@@ -15,7 +15,12 @@ export class UsersService {
 
     create(newUser: UserDto) {
         newUser.id = uuid();
-        newUser. password = hashSync(newUser.password, 10);
+        newUser.password = hashSync(newUser.password, 10);
         this.users.push(newUser);
+    }
+
+    getByUsername(username: string): UserDto | null {
+        return this.users.find(u => u.username === username);
+
     }
 }
